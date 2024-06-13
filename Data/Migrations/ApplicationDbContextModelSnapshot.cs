@@ -111,7 +111,7 @@ namespace HomeCenter.Data.Migrations
                     b.Property<double>("AmountCollected")
                         .HasColumnType("REAL");
 
-                    b.Property<int?>("BudgetModelId")
+                    b.Property<int>("BudgetModelId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
@@ -352,9 +352,13 @@ namespace HomeCenter.Data.Migrations
 
             modelBuilder.Entity("HomeCenter.Models.SavingTargetModel", b =>
                 {
-                    b.HasOne("HomeCenter.Models.BudgetModel", null)
+                    b.HasOne("HomeCenter.Models.BudgetModel", "BudgetModel")
                         .WithMany("SavingTargets")
-                        .HasForeignKey("BudgetModelId");
+                        .HasForeignKey("BudgetModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BudgetModel");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

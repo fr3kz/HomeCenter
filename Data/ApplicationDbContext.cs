@@ -23,5 +23,17 @@ public class ApplicationDbContext : IdentityDbContext
             .HasOne(e => e.User)
             .WithMany()
             .HasForeignKey(e => e.UserId);
+
+        modelBuilder.Entity<ExpenseModel>()
+            .HasOne(e => e.CategoryExpenseModel)
+            .WithMany(e => e.Expenses)
+            .HasForeignKey(s => s.CategoryExpenseModelId);
+
+
+        modelBuilder.Entity<SavingTargetModel>()
+            .HasOne(s => s.BudgetModel)
+            .WithMany(b => b.SavingTargets)
+            .HasForeignKey(c => c.BudgetModelId);
+
     }
 }

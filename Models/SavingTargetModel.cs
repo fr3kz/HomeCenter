@@ -9,5 +9,6 @@ public class SavingTargetModel
     public string Name { get; set; }
     public double PriceTarget { get; set; }
     public double AmountCollected { get; set; }
-    
+    public int BudgetModelId { get; set; }
+    public BudgetModel BudgetModel { get; set; }
 }
